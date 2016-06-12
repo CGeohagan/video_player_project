@@ -36,10 +36,12 @@ video::-webkit-media-controls {
 
 .button-controls-1 {
    margin-left: 5%;
+   width: 5em;
 }
 
 .button-controls-2 {
    margin-right: 5%;
+   width: 10em;
 }
 
 
@@ -71,7 +73,10 @@ video::-webkit-media-controls {
       background:transparent;
       background-size:contain;
       background-repeat:no-repeat;
+      -webkit-appearance: none;
+      margin-left: 5px;
 	}
+
 
 	> *:first-child {
    	  margin-left:0;
@@ -165,12 +170,14 @@ video::-webkit-media-controls {
 
 	.fa {
    	  color: white;
-      font-size: 1.3em;
+      font-size: 1.4em;
       vertical-align: middle;
 	}
 
 	button:hover, button:focus {
    	  opacity:0.5;
+   	  border: none;
+   	  outline: none;
 	}
 
 	button[data-state="play"] {

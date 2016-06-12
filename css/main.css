@@ -41,10 +41,12 @@ video::-webkit-media-controls {
   margin-top: 1.5%; }
 
 .button-controls-1 {
-  margin-left: 5%; }
+  margin-left: 5%;
+  width: 5em; }
 
 .button-controls-2 {
-  margin-right: 5%; }
+  margin-right: 5%;
+  width: 10em; }
 
 /* Data-state attribue indicate whether controls are visible or not */
 .controls[data-state=hidden] {
@@ -79,7 +81,9 @@ video::-webkit-media-controls {
     cursor: pointer;
     background: transparent;
     background-size: contain;
-    background-repeat: no-repeat; }
+    background-repeat: no-repeat;
+    -webkit-appearance: none;
+    margin-left: 5px; }
   .controls > *:first-child {
     margin-left: 0; }
   .controls .progress {
@@ -136,10 +140,12 @@ video::-webkit-media-controls {
     margin: 0 auto; }
   .controls .fa {
     color: white;
-    font-size: 1.3em;
+    font-size: 1.4em;
     vertical-align: middle; }
   .controls button:hover, .controls button:focus {
-    opacity: 0.5; }
+    opacity: 0.5;
+    border: none;
+    outline: none; }
   .controls button[data-state="play"] {
     background-image: url("../icons/play-icon.png"); }
   .controls button[data-state="pause"] {
