@@ -1,21 +1,194 @@
-
+/* Variables -------------------- */
+.container {
+  display: flex;
+  flex-direction: column; }
 
 p {
-	font-family: 'Open Sans', sans-serif;
-	font-size: 16px;
-	color: #666666;
-	text-align: left;
-	line-height: 1.9em;
-	margin: 1.1em 0;
-}
-
-.orange-text {
-	color: #e38901;
-}
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  color: #666666;
+  text-align: left;
+  line-height: 1.9em;
+  margin: 1.1em 0; }
 
 .text-wrapper {
-	max-width: 93%;
-	margin: 10px auto;
-	padding: 0 0 30px;
-}
+  max-width: 93%;
+  margin: 10px auto;
+  padding: 0 0 30px; }
 
+#video-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2147483647; }
+
+video::-webkit-media-controls {
+  display: none !important; }
+
+#video-styles, #progress-container, #button-container {
+  width: 100%; }
+
+#progress-container {
+  margin: auto; }
+
+#button-container, .button-controls-1, .button-controls-2 {
+  display: flex;
+  flex-direction: row; }
+
+#button-container {
+  justify-content: space-between;
+  margin-top: 1.5%; }
+
+.button-controls-1 {
+  margin-left: 5%; }
+
+.button-controls-2 {
+  margin-right: 5%; }
+
+/* Data-state attribue indicate whether controls are visible or not */
+.controls[data-state=hidden] {
+  display: none; }
+
+.controls[data-state=visible] {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 2147483647;
+  display: none;
+  width: 100%;
+  bottom: 20px; }
+
+.controls {
+  /* Polyfill */
+  /* Ensure fallback text doesn't appear in polyfill */
+  /* This sets the dimensions of our sample PB element*/
+  /* Background Colors  */
+  /* Chrome */
+  /* Foreground Colors   */
+  /* IE10 */
+  /* Firefox */
+  /* Chrome */
+  /* Polyfill */
+  /* Styling the fake progress bar for browsers in which the progress bar won't work */ }
+  .controls button {
+    float: left;
+    flex-grow: 1;
+    height: 1.4em;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    background-size: contain;
+    background-repeat: no-repeat; }
+  .controls > *:first-child {
+    margin-left: 0; }
+  .controls .progress {
+    cursor: pointer;
+    width: 100%;
+    margin: auto;
+    height: 1.5em;
+    border: none;
+    color: #e38901;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px; }
+  .controls progress,
+  .controls progress[role] {
+    /* polyfill */
+    /* Turns off styling - not usually needed, but good to know. */
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    /* gets rid of default border in Firefox and Opera. */
+    border: none;
+    /* Needs to be in here for Safari polyfill so background images work as expected. */
+    background-size: auto;
+    /* Dimensions */
+    height: .2em; }
+  .controls progress[role]:after {
+    background-image: none;
+    /* removes default background from polyfill */ }
+  .controls progress[role] strong {
+    display: none; }
+  .controls #test_bar {
+    -webkit-appearance: none;
+    border: solid 1px black;
+    width: 200px;
+    height: 20px; }
+  .controls progress,
+  .controls progress[role][aria-valuenow] {
+    /* Polyfill */
+    background: rgba(255, 255, 255, 0.15) !important;
+    /* !important is needed by the polyfill */ }
+  .controls progress::-webkit-progress-bar {
+    background: rgba(255, 255, 255, 0.15); }
+  .controls progress {
+    color: #e38901; }
+  .controls progress::-moz-progress-bar {
+    background: #e38901; }
+  .controls progress::-webkit-progress-value {
+    background: #e38901; }
+  .controls progress[aria-valuenow]:before {
+    background: #e38901; }
+  .controls .progress #progress {
+    width: 95%;
+    display: block;
+    margin: 0 auto; }
+  .controls .fa {
+    color: white;
+    font-size: 1.3em;
+    vertical-align: middle; }
+  .controls button:hover, .controls button:focus {
+    opacity: 0.5; }
+  .controls button[data-state="play"] {
+    background-image: url("../icons/play-icon.png"); }
+  .controls button[data-state="pause"] {
+    background-image: url("../icons/pause-icon.png"); }
+  .controls button[data-state="go-fullscreen"] {
+    background-image: url("../icons/fullscreen-icon.png"); }
+  .controls button[data-state="mute"] {
+    background-image: url("../icons/volume-off-icon.png"); }
+  .controls button[data-state="unmute"] {
+    background-image: url("../icons/volume-on-icon.png"); }
+  .controls progress[data-state="fake"] {
+    background: #e6e6e6;
+    height: 65%; }
+  .controls progress span {
+    width: 0%;
+    height: 100%;
+    background-color: #2a84cd; }
+  .controls progress::-moz-progress-bar, .controls progress::-webkit-progress-value {
+    background-color: #e38901; }
+
+/* Responsive Styling */
+@media screen and (max-width: 1024px) {
+  #video-styles {
+    padding-left: 0;
+    padding-right: 0; }
+
+  .controls {
+    height: 1.876rem; } }
+@media screen and (max-width: 680px) {
+  .controls {
+    height: auto; }
+
+  .controls > * {
+    width: 16.6667%;
+    margin-left: 0;
+    height: 2.5rem;
+    margin-top: 2.5rem; }
+
+  .controls .progress {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    float: none;
+    margin-top: 0; }
+
+  .controls .progress #progress {
+    width: 98%; }
+
+  .controls button {
+    background-position: center center; } }
+
+/*# sourceMappingURL=main.css.map */

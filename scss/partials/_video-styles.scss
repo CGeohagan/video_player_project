@@ -1,0 +1,257 @@
+
+// ==========================================================================
+// Video Styles
+// ==========================================================================
+
+
+#video-wrapper {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   position: relative;
+   z-index: 2147483647;
+}
+
+video::-webkit-media-controls { 
+   display:none !important; 
+}
+
+#video-styles, #progress-container, #button-container {
+   width: 100%;
+}
+
+#progress-container {
+   margin: auto;
+}
+
+#button-container, .button-controls-1, .button-controls-2 {
+   display: flex;
+   flex-direction: row;
+}
+
+#button-container {
+   justify-content: space-between;
+   margin-top: 1.5%;
+}
+
+.button-controls-1 {
+   margin-left: 5%;
+}
+
+.button-controls-2 {
+   margin-right: 5%;
+}
+
+
+
+/* Data-state attribue indicate whether controls are visible or not */
+.controls[data-state=hidden] {
+   display:none;
+}
+
+.controls[data-state=visible] {
+   display:flex;
+   flex-direction:column;
+   position:absolute;
+   z-index: 2147483647;
+   display: none;
+   width: 100%;
+   bottom: 20px;
+}
+
+
+.controls {
+
+	button {
+	  float:left;
+	  flex-grow: 1;
+	  height: 1.4em;
+	  border:none;
+      cursor:pointer;
+      background:transparent;
+      background-size:contain;
+      background-repeat:no-repeat;
+	}
+
+	> *:first-child {
+   	  margin-left:0;
+	}	
+
+	.progress {
+	   cursor:pointer;
+	   width: 100%;
+	   margin:auto;
+   	   height:1.5em;
+	   border:none;
+	   color:$color-vid;
+	   -moz-border-radius:2px;
+	   -webkit-border-radius:2px;
+	   border-radius:2px;
+	}
+
+	progress,          /* All HTML5 progress enabled browsers */
+	progress[role] {    /* polyfill */
+        /* Turns off styling - not usually needed, but good to know. */
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+ 
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+ 
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+         
+        /* Dimensions */
+        height: .2em;       
+	}
+
+	/* Polyfill */
+	progress[role]:after {
+	    background-image: none; /* removes default background from polyfill */
+	}
+	 
+	/* Ensure fallback text doesn't appear in polyfill */
+	progress[role] strong {
+	    display: none;
+	}
+	 
+	/* This sets the dimensions of our sample PB element*/
+	#test_bar {
+	  -webkit-appearance: none;
+	  border: solid 1px black;
+	  width: 200px;
+	  height: 20px;
+	}
+
+	/* Background Colors  */
+	progress,                          /* Firefox  */
+	progress[role][aria-valuenow] {    /* Polyfill */
+	   background: rgba(255, 255, 255, 0.15)!important; /* !important is needed by the polyfill */
+	}
+	 
+	/* Chrome */
+	progress::-webkit-progress-bar {
+	    background: rgba(255, 255, 255, 0.15);
+	}
+	 
+	/* Foreground Colors   */
+	/* IE10 */
+	progress {
+	    color: $color-vid;
+	}
+	 
+	/* Firefox */
+	progress::-moz-progress-bar { 
+	    background: $color-vid;   
+	}
+	 
+	/* Chrome */
+	progress::-webkit-progress-value {
+	    background: $color-vid;
+	}
+	 
+	/* Polyfill */
+	progress[aria-valuenow]:before  {
+	    background: $color-vid;
+	}
+	
+
+	.progress #progress {
+	   width: 95%;
+	   display: block;
+	   margin: 0 auto;
+	}
+
+	.fa {
+   	  color: white;
+      font-size: 1.3em;
+      vertical-align: middle;
+	}
+
+	button:hover, button:focus {
+   	  opacity:0.5;
+	}
+
+	button[data-state="play"] {
+      background-image: url('../icons/play-icon.png');
+	}
+
+	button[data-state="pause"] {
+      background-image: url('../icons/pause-icon.png');
+	}
+
+	button[data-state="go-fullscreen"] {
+   	  background-image: url('../icons/fullscreen-icon.png');
+	}
+
+	button[data-state="mute"] {
+      background-image: url('../icons/volume-off-icon.png');
+	}
+
+	button[data-state="unmute"] {
+	  background-image: url('../icons/volume-on-icon.png');
+	}
+
+	/* Styling the fake progress bar for browsers in which the progress bar won't work */
+	progress[data-state="fake"] {
+      background:#e6e6e6;
+      height:65%;
+	}
+
+	progress span {
+      width:0%;
+      height:100%;
+      background-color:#2a84cd;  
+	}
+
+	progress::-moz-progress-bar, progress::-webkit-progress-value {
+	  background-color: $color-vid;
+	}
+
+
+}
+ 
+
+
+/* Responsive Styling */
+
+@media screen and (max-width:1024px) {
+   #video-styles {
+      padding-left:0;
+      padding-right:0;
+   }
+
+   .controls {
+      height:1.876rem;
+   }
+}
+
+@media screen and (max-width:680px) {
+   .controls {
+      height:auto;
+   }
+
+   .controls > * {
+      width:16.6667%;
+      margin-left:0;
+      height:2.5rem;
+      margin-top:2.5rem;
+   }
+
+   .controls .progress {
+      position:absolute;
+      top:0;
+      width:100%;
+      float:none;
+      margin-top:0;
+   }
+
+   .controls .progress #progress {
+      width:98%;
+   }
+
+   .controls button {
+      background-position:center center;
+   }
+}

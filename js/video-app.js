@@ -21,7 +21,7 @@ if (supportsVideo) {
 	video.controls = false;
 
 	// Display the user defined video controls ***Do these need to be hidden?
-	videoControls.style.display = 'block';
+	videoControls.style.display = 'flex';
 
 // Display the user defined video controls
 videoControls.setAttribute('data-state', 'visible');

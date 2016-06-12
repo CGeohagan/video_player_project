@@ -1,0 +1,25 @@
+
+// ==========================================================================
+// Base Styles
+// ==========================================================================
+
+.container {
+   display: flex;
+   flex-direction: column;
+}
+
+p {
+	font-family: $stack-sans-serif;
+	font-size: $body-font;
+	color: $color-prim;
+	text-align: left;
+	line-height: 1.9em;
+	margin: 1.1em 0;
+}
+
+
+.text-wrapper {
+	max-width: 93%;
+	margin: 10px auto;
+	padding: 0 0 30px;
+}
