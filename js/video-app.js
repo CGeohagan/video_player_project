@@ -8,7 +8,13 @@ var volinc = document.getElementById('volinc');
 var voldec = document.getElementById('voldec');
 var progress = document.getElementById('progress');
 var progressBar = document.getElementById('progress-bar');
+var buffer = document.querySelector('.buffer');
 var fullscreen = document.getElementById('fs');
+var curtime = document.getElementById("current");
+var durtime = document.getElementById("duration");
+ 
+//return a jQuery object
+var $video = $('#video-styles');
 
 //Check if browser supports video
 var supportsVideo = !!document.createElement('video').canPlayType;
@@ -22,6 +28,7 @@ if (supportsVideo) {
 
 	// Display the user defined video controls ***Do these need to be hidden?
 	videoControls.style.display = 'flex';
+   videoControls.style.display = '-webkit-flex';
 
 // Display the user defined video controls
 videoControls.setAttribute('data-state', 'visible');
@@ -41,7 +48,8 @@ var changeButtonState = function(type) {
          playpause.setAttribute('data-state', 'pause');
       }
    }
-   // Mute button
+//2. Add volume button that lets you mute the sound or turn it on
+   //Mute button
    else if (type == 'mute') {
       mute.setAttribute('data-state', video.muted ? 'unmute' : 'mute');
    }
@@ -75,16 +83,7 @@ playpause.addEventListener('click', function(e) {
    else video.pause();
 });
 
-
-
-
-
-//2. Add volume button that lets you mute the sound or turn it on
-//Mute button
-mute.addEventListener('click', function(e) {
-   video.muted = !video.muted;
-});
-
+//Volume control so viewer can adjust the volume level, not just mute or on
 //Volume 
 volinc.addEventListener('click', function(e) {
    alterVolume('+');
@@ -121,7 +120,7 @@ video.addEventListener('volumechange', function() {
 //3. Implement the playback progress control
 	//A user should be able to click anywhere on the playback bar to jump to that part of the video
 	//As the video plays the playback bar should fill in
-	//As the video plays the current time should be displayed and updated e.g. 0:10/11:34
+	
 
 //Setting max to duration - may not work on all browsers
 video.addEventListener('loadedmetadata', function() {
@@ -132,6 +131,20 @@ video.addEventListener('loadedmetadata', function() {
 video.addEventListener('timeupdate', function() {
    progress.value = video.currentTime;
    progressBar.style.width = Math.floor((video.currentTime / video.duration) * 100) + '%';
+
+
+//As the video plays the current time should be displayed and updated e.g. 0:10/11:34
+//get HTML5 video time duration
+   var curmins = Math.floor(video.currentTime / 60);
+   var cursecs = Math.floor(video.currentTime - curmins * 60);
+   var durmins = Math.floor(video.duration / 60);
+   var dursecs = Math.floor(video.duration - durmins * 60);
+   if(cursecs < 10){ cursecs = "0"+cursecs; }
+   if(dursecs < 10){ dursecs = "0"+dursecs; }
+   if(curmins < 10){ curmins = "0"+curmins; }
+   if(durmins < 10){ durmins = "0"+durmins; }
+   curtime.innerHTML = curmins+":"+cursecs;
+   durtime.innerHTML = durmins+":"+dursecs;
 });
 
 //If setting max to duration did not work, this will set the max
@@ -147,9 +160,25 @@ progress.addEventListener('click', function(e) {
    video.currentTime = pos * video.duration;
 });
 
+
+
 //Set up "fake" progress bar
 var supportsProgress = (document.createElement('progress').max !== undefined);
 if (!supportsProgress) progress.setAttribute('data-state', 'fake');
+
+
+//Playback controls include buffering progress of the downloaded video
+video.addEventListener('progress', function() {
+   var bufferedEnd = video.buffered.end(video.buffered.length - 1);
+   var duration =  video.duration;
+   if (duration > 0) {
+        document.getElementById('buffered-amount').style.width = ((bufferedEnd / duration)*100) + "%";
+   }
+});
+
+
+
+
 
 
 //4. Implement the fullscreen button
@@ -209,6 +238,7 @@ document.addEventListener('msfullscreenchange', function() {
 
 
 
+//use mouseenter and mouseleave for hiding controls
 
 
 //As the media playback time changes, sentences in the transcript should highlight
@@ -220,6 +250,6 @@ document.addEventListener('msfullscreenchange', function() {
 //Embed the .vtt file as a closed captioning track and add a button to video controls to toggle captions on and off
 //A creative and thoughtful responsive design
 //Playback speed control or other helpful controls
-//Volume control so viewer can adjust the volume level, not just mute or on
-//Playback controls include buffering progress of the downloaded video
+
+
 //When the user clicks on any sentence in the transcript the video player jumps to the appropriate time in the video

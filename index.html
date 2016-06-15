@@ -22,6 +22,9 @@
       </video> 
         <div id="video-controls" class="controls" data-state="hidden">
            <div id="progress-container">
+             <div class="buffered">
+              <span id="buffered-amount"></span>
+             </div>
              <div class="progress">
                 <progress id="progress" value="0" min="0">
                    <span id="progress-bar"></span>
@@ -29,9 +32,14 @@
              </div>
            </div>
            <div id="button-container">
-             <div class="button-controls-1">
-                <button id="playpause" type="button" data-state="play"></button>
-                <button id="stop" type="button" data-state="stop"><i class="fa fa-stop" aria-hidden="true"></i></button>
+             <div id="controls-1">
+               <div class="button-controls-1">
+                  <button id="playpause" type="button" data-state="play"></button>
+                  <button id="stop" type="button" data-state="stop"><i class="fa fa-stop" aria-hidden="true"></i></button>
+               </div>
+               <div class="progressTime">
+                  <span id="current">00:00</span> / <span id="duration">00:00</span>
+               </div>
              </div>
              <div class="button-controls-2">
                <button id="mute" type="button" data-state="mute"></button>
@@ -66,9 +74,8 @@
 
     </div>
   </div>
-    
-    <script src="js/video-app.js">
-    </script>
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/video-app.js"></script>
 
   </body>
 </html>

@@ -5,9 +5,9 @@
 
 
 #video-wrapper {
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
+   @extend %flex;
+   @extend %flex-column;
+   @extend %flex-center;
    position: relative;
    z-index: 2147483647;
 }
@@ -24,24 +24,30 @@ video::-webkit-media-controls {
    margin: auto;
 }
 
-#button-container, .button-controls-1, .button-controls-2 {
-   display: flex;
-   flex-direction: row;
+#button-container, .button-controls-1, .button-controls-2, #controls-1 {
+   @extend %flex;
+   @extend %flex-row;
 }
 
 #button-container {
-   justify-content: space-between;
+   @extend %flex-space;
    margin-top: 1.5%;
 }
 
 .button-controls-1 {
-   margin-left: 5%;
+ 
    width: 5em;
+   @extend %flex;
+}
+
+#controls-1 {
+   margin-left: 5%;
 }
 
 .button-controls-2 {
    margin-right: 5%;
-   width: 10em;
+   width: 12em;
+   @extend %flex;
 }
 
 
@@ -52,8 +58,8 @@ video::-webkit-media-controls {
 }
 
 .controls[data-state=visible] {
-   display:flex;
-   flex-direction:column;
+   @extend %flex;
+   @extend %flex-column;
    position:absolute;
    z-index: 2147483647;
    display: none;
@@ -65,9 +71,9 @@ video::-webkit-media-controls {
 .controls {
 
 	button {
-	  float:left;
-	  flex-grow: 1;
-	  height: 1.4em;
+	  @extend %flex-grow;
+	  align-items: center;
+	  height: 1.5em;
 	  border:none;
       cursor:pointer;
       background:transparent;
@@ -77,21 +83,36 @@ video::-webkit-media-controls {
       margin-left: 5px;
 	}
 
+	button#mute {
+	  margin-right: .3em;
+	}
+
+	button#fs {
+	  margin-left: 1em;
+	}
+
 
 	> *:first-child {
    	  margin-left:0;
 	}	
 
+	
+
+
 	.progress {
 	   cursor:pointer;
 	   width: 100%;
 	   margin:auto;
-   	   height:1.5em;
 	   border:none;
 	   color:$color-vid;
-	   -moz-border-radius:2px;
-	   -webkit-border-radius:2px;
-	   border-radius:2px;
+
+	}
+
+	.progressTime {
+		width: 8em;
+		color: $white;
+		font-size: .9em;
+		margin: auto 0 auto .5em;
 	}
 
 	progress,          /* All HTML5 progress enabled browsers */
@@ -108,7 +129,9 @@ video::-webkit-media-controls {
         background-size: auto;
          
         /* Dimensions */
-        height: .2em;       
+        height: .3em;    
+
+  
 	}
 
 	/* Polyfill */
@@ -167,6 +190,15 @@ video::-webkit-media-controls {
 	   display: block;
 	   margin: 0 auto;
 	}
+
+
+
+	#buffered-amount {
+  display: block;
+  height: 100%;
+  background-color: #777;
+  width: 0;
+}
 
 	.fa {
    	  color: white;
@@ -229,9 +261,7 @@ video::-webkit-media-controls {
       padding-right:0;
    }
 
-   .controls {
-      height:1.876rem;
-   }
+
 }
 
 @media screen and (max-width:680px) {
@@ -242,8 +272,6 @@ video::-webkit-media-controls {
    .controls > * {
       width:16.6667%;
       margin-left:0;
-      height:2.5rem;
-      margin-top:2.5rem;
    }
 
    .controls .progress {

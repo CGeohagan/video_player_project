@@ -1,4 +1,28 @@
 /* Variables -------------------- */
+#video-wrapper, #button-container, .button-controls-1, .button-controls-2, #controls-1, .controls[data-state=visible] {
+  display: flex;
+  display: -webkit-flex; }
+
+#video-wrapper, .controls[data-state=visible] {
+  flex-direction: column;
+  -webkit-flex-direction: column; }
+
+#button-container, .button-controls-1, .button-controls-2, #controls-1 {
+  flex-direction: row;
+  -webkit-flex-direction: row; }
+
+#video-wrapper {
+  justify-content: center;
+  -webkit-justify-content: center; }
+
+#button-container {
+  justify-content: space-between;
+  -webkit-justify-content: space-between; }
+
+.controls button {
+  flex-grow: 1;
+  -webkit-flex-grow: 1; }
+
 .container {
   display: flex;
   flex-direction: column; }
@@ -13,13 +37,10 @@ p {
 
 .text-wrapper {
   max-width: 93%;
-  margin: 10px auto;
-  padding: 0 0 30px; }
+  margin: 1.4em auto;
+  padding: 0 0 1.3em; }
 
 #video-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   position: relative;
   z-index: 2147483647; }
 
@@ -32,29 +53,24 @@ video::-webkit-media-controls {
 #progress-container {
   margin: auto; }
 
-#button-container, .button-controls-1, .button-controls-2 {
-  display: flex;
-  flex-direction: row; }
-
 #button-container {
-  justify-content: space-between;
   margin-top: 1.5%; }
 
 .button-controls-1 {
-  margin-left: 5%;
   width: 5em; }
+
+#controls-1 {
+  margin-left: 5%; }
 
 .button-controls-2 {
   margin-right: 5%;
-  width: 10em; }
+  width: 12em; }
 
 /* Data-state attribue indicate whether controls are visible or not */
 .controls[data-state=hidden] {
   display: none; }
 
 .controls[data-state=visible] {
-  display: flex;
-  flex-direction: column;
   position: absolute;
   z-index: 2147483647;
   display: none;
@@ -74,9 +90,8 @@ video::-webkit-media-controls {
   /* Polyfill */
   /* Styling the fake progress bar for browsers in which the progress bar won't work */ }
   .controls button {
-    float: left;
-    flex-grow: 1;
-    height: 1.4em;
+    align-items: center;
+    height: 1.5em;
     border: none;
     cursor: pointer;
     background: transparent;
@@ -84,18 +99,23 @@ video::-webkit-media-controls {
     background-repeat: no-repeat;
     -webkit-appearance: none;
     margin-left: 5px; }
+  .controls button#mute {
+    margin-right: .3em; }
+  .controls button#fs {
+    margin-left: 1em; }
   .controls > *:first-child {
     margin-left: 0; }
   .controls .progress {
     cursor: pointer;
     width: 100%;
     margin: auto;
-    height: 1.5em;
     border: none;
-    color: #e38901;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px; }
+    color: #e38901; }
+  .controls .progressTime {
+    width: 8em;
+    color: #fff;
+    font-size: .9em;
+    margin: auto 0 auto .5em; }
   .controls progress,
   .controls progress[role] {
     /* polyfill */
@@ -108,7 +128,7 @@ video::-webkit-media-controls {
     /* Needs to be in here for Safari polyfill so background images work as expected. */
     background-size: auto;
     /* Dimensions */
-    height: .2em; }
+    height: .3em; }
   .controls progress[role]:after {
     background-image: none;
     /* removes default background from polyfill */ }
@@ -138,6 +158,11 @@ video::-webkit-media-controls {
     width: 95%;
     display: block;
     margin: 0 auto; }
+  .controls #buffered-amount {
+    display: block;
+    height: 100%;
+    background-color: #777;
+    width: 0; }
   .controls .fa {
     color: white;
     font-size: 1.4em;
@@ -170,19 +195,14 @@ video::-webkit-media-controls {
 @media screen and (max-width: 1024px) {
   #video-styles {
     padding-left: 0;
-    padding-right: 0; }
-
-  .controls {
-    height: 1.876rem; } }
+    padding-right: 0; } }
 @media screen and (max-width: 680px) {
   .controls {
     height: auto; }
 
   .controls > * {
     width: 16.6667%;
-    margin-left: 0;
-    height: 2.5rem;
-    margin-top: 2.5rem; }
+    margin-left: 0; }
 
   .controls .progress {
     position: absolute;
