@@ -20,9 +20,7 @@ video::-webkit-media-controls {
    width: 100%;
 }
 
-#progress-container {
-   margin: auto;
-}
+
 
 #button-container, .button-controls-1, .button-controls-2, #controls-1 {
    @extend %flex;
@@ -96,17 +94,43 @@ video::-webkit-media-controls {
    	  margin-left:0;
 	}	
 
-	
+	#progress-container {
+      margin: 0 auto;
+      display: block;
+      width: 95%;
+      position: relative;
+	}
+
+	.buffered {
+	  position: relative;
+	  height: .3em;
+	}
+
+
+	#buffered-amount {
+  	   display: block;
+  	   height: 100%;
+  	   background-color: rgba(255, 255, 255, 0.35);
+  	   width: 0;
+	}
 
 
 	.progress {
-	   cursor:pointer;
+	   cursor: pointer;
 	   width: 100%;
-	   margin:auto;
-	   border:none;
-	   color:$color-vid;
-
+	   border: none;
+	   color: $color-vid;
+	   position: relative;
+	   margin-top: -.3em;
 	}
+
+	.progress #progress {
+	   width: 100%;
+	   display: block;
+	}
+
+
+
 
 	.progressTime {
 		width: 8em;
@@ -185,20 +209,7 @@ video::-webkit-media-controls {
 	}
 	
 
-	.progress #progress {
-	   width: 95%;
-	   display: block;
-	   margin: 0 auto;
-	}
-
-
-
-	#buffered-amount {
-  display: block;
-  height: 100%;
-  background-color: #777;
-  width: 0;
-}
+	
 
 	.fa {
    	  color: white;

@@ -50,9 +50,6 @@ video::-webkit-media-controls {
 #video-styles, #progress-container, #button-container {
   width: 100%; }
 
-#progress-container {
-  margin: auto; }
-
 #button-container {
   margin-top: 1.5%; }
 
@@ -105,12 +102,29 @@ video::-webkit-media-controls {
     margin-left: 1em; }
   .controls > *:first-child {
     margin-left: 0; }
+  .controls #progress-container {
+    margin: 0 auto;
+    display: block;
+    width: 95%;
+    position: relative; }
+  .controls .buffered {
+    position: relative;
+    height: .3em; }
+  .controls #buffered-amount {
+    display: block;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.35);
+    width: 0; }
   .controls .progress {
     cursor: pointer;
     width: 100%;
-    margin: auto;
     border: none;
-    color: #e38901; }
+    color: #e38901;
+    position: relative;
+    margin-top: -.3em; }
+  .controls .progress #progress {
+    width: 100%;
+    display: block; }
   .controls .progressTime {
     width: 8em;
     color: #fff;
@@ -154,15 +168,6 @@ video::-webkit-media-controls {
     background: #e38901; }
   .controls progress[aria-valuenow]:before {
     background: #e38901; }
-  .controls .progress #progress {
-    width: 95%;
-    display: block;
-    margin: 0 auto; }
-  .controls #buffered-amount {
-    display: block;
-    height: 100%;
-    background-color: #777;
-    width: 0; }
   .controls .fa {
     color: white;
     font-size: 1.4em;
