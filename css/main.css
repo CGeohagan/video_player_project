@@ -78,12 +78,6 @@ video::-webkit-media-controls {
   bottom: 20px; }
 
 .controls {
-  visibility: hidden; }
-
-.controls:hover {
-  visibility: visible; }
-
-.controls {
   /* Polyfill */
   /* Ensure fallback text doesn't appear in polyfill */
   /* This sets the dimensions of our sample PB element*/

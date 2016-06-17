@@ -179,8 +179,8 @@ video.addEventListener('progress', function() {
 
 //As the media playback time changes, sentences in the transcript should highlight
    //Use javascript to listen for those changes and apply a highlight to the appropriate sentence
-var captionHighlight = function() {
-   var captionTextList = document.querySelectorAll('.captionText span');
+video.addEventListener("loadedmetadata", function() {
+   var captionHighlight = document.querySelectorAll('.captionText span');
    var cueTime = video.currentTime;
    if(cueTime > 0 && cueTime < 4.13) {
       video.captionHighlight[0].classList.add('highlight');
@@ -263,8 +263,7 @@ var captionHighlight = function() {
       video.captionHighlight[15].classList.remove('highlight');
    }
 
-
-}
+});
 
 
 
