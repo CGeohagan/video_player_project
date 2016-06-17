@@ -118,8 +118,7 @@ video.addEventListener('volumechange', function() {
 
 
 //3. Implement the playback progress control
-	//A user should be able to click anywhere on the playback bar to jump to that part of the video
-	//As the video plays the playback bar should fill in
+
 	
 
 //Setting max to duration - may not work on all browsers
@@ -127,6 +126,8 @@ video.addEventListener('loadedmetadata', function() {
    progress.setAttribute('max', video.duration);
 });
 
+//A user should be able to click anywhere on the playback bar to jump to that part of the video
+//As the video plays the playback bar should fill in
 //Set progress bar value to current time
 video.addEventListener('timeupdate', function() {
    progress.value = video.currentTime;
@@ -176,8 +177,94 @@ video.addEventListener('progress', function() {
    }
 });
 
+//As the media playback time changes, sentences in the transcript should highlight
+   //Use javascript to listen for those changes and apply a highlight to the appropriate sentence
+var captionHighlight = function() {
+   var captionTextList = document.querySelectorAll('.captionText span');
+   var cueTime = video.currentTime;
+   if(cueTime > 0 && cueTime < 4.13) {
+      video.captionHighlight[0].classList.add('highlight');
+   } else {
+      video.captionHighlight[0].classList.remove('highlight');
+   }
+   if(cueTime > 4.13 && cueTime < 7.535) {
+      video.captionHighlight[1].classList.add('highlight');
+   } else {
+      video.captionHighlight[1].classList.remove('highlight');
+   }
+   if(cueTime > 7.535 && cueTime < 11.27) {
+      video.captionHighlight[2].classList.add('highlight');
+   } else {
+      video.captionHighlight[2].classList.remove('highlight');
+   }
+   if(cueTime > 11.27 && cueTime < 13.960) {
+      video.captionHighlight[3].classList.add('highlight');
+   } else {
+      video.captionHighlight[3].classList.remove('highlight');
+   }
+   if(cueTime > 13.96 && cueTime < 17.94) {
+      video.captionHighlight[4].classList.add('highlight');
+   } else {
+      video.captionHighlight[4].classList.remove('highlight');
+   }
+   if(cueTime > 17.94 && cueTime < 22.37) {
+      video.captionHighlight[5].classList.add('highlight');
+   } else {
+      video.captionHighlight[5].classList.remove('highlight');
+   }
+   if(cueTime > 22.37 && cueTime < 26.88) {
+      video.captionHighlight[6].classList.add('highlight');
+   } else {
+      video.captionHighlight[6].classList.remove('highlight');
+   }
+   if(cueTime > 26.88 && cueTime < 30.92) {
+      video.captionHighlight[7].classList.add('highlight');
+   } else {
+      video.captionHighlight[7].classList.remove('highlight');
+   }
+   if(cueTime > 32.1 && cueTime < 34.73) {
+      video.captionHighlight[8].classList.add('highlight');
+   } else {
+      video.captionHighlight[8].classList.remove('highlight');
+   }
+   if(cueTime > 34.73 && cueTime < 39.43) {
+      video.captionHighlight[9].classList.add('highlight');
+   } else {
+      video.captionHighlight[9].classList.remove('highlight');
+   }
+   if(cueTime > 39.43 && cueTime < 41.19) {
+      video.captionHighlight[10].classList.add('highlight');
+   } else {
+      video.captionHighlight[10].classList.remove('highlight');
+   }
+   if(cueTime > 42.35 && cueTime < 46.3) {
+      video.captionHighlight[11].classList.add('highlight');
+   } else {
+      video.captionHighlight[11].classList.remove('highlight');
+   }
+   if(cueTime > 46.3 && cueTime < 49.27) {
+      video.captionHighlight[12].classList.add('highlight');
+   } else {
+      video.captionHighlight[12].classList.remove('highlight');
+   }
+   if(cueTime > 49.27 && cueTime < 53.76) {
+      video.captionHighlight[13].classList.add('highlight');
+   } else {
+      video.captionHighlight[13].classList.remove('highlight');
+   }
+   if(cueTime > 53.76 && cueTime < 57.78) {
+      video.captionHighlight[14].classList.add('highlight');
+   } else {
+      video.captionHighlight[14].classList.remove('highlight');
+   }
+   if(cueTime > 57.78) {
+      video.captionHighlight[15].classList.add('highlight');
+   } else {
+      video.captionHighlight[15].classList.remove('highlight');
+   }
 
 
+}
 
 
 
@@ -241,8 +328,7 @@ document.addEventListener('msfullscreenchange', function() {
 //use mouseenter and mouseleave for hiding controls
 
 
-//As the media playback time changes, sentences in the transcript should highlight
-	//Use javascript to listen for those changes and apply a highlight to the appropriate sentence
+
 	//You can use the captions.vtt file tos ee the times at which the words are spekn in the video
 
 

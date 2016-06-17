@@ -65,6 +65,14 @@ video::-webkit-media-controls {
    bottom: 20px;
 }
 
+.controls {
+	visibility: hidden;
+}
+
+.controls:hover {
+	visibility: visible;
+}
+
 
 .controls {
 
@@ -128,8 +136,6 @@ video::-webkit-media-controls {
 	   width: 100%;
 	   display: block;
 	}
-
-
 
 
 	.progressTime {

@@ -40,6 +40,9 @@ p {
   margin: 1.4em auto;
   padding: 0 0 1.3em; }
 
+.highlight {
+  color: #e38901; }
+
 #video-wrapper {
   position: relative;
   z-index: 2147483647; }
@@ -73,6 +76,12 @@ video::-webkit-media-controls {
   display: none;
   width: 100%;
   bottom: 20px; }
+
+.controls {
+  visibility: hidden; }
+
+.controls:hover {
+  visibility: visible; }
 
 .controls {
   /* Polyfill */
