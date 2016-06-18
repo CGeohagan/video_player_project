@@ -15,7 +15,7 @@
   <div class="container">
     <div id="video-wrapper">
         
-      <video id="video-styles"  controls>
+      <video id="video-styles"  controls preload='metadata'>
         <source src="video/video.mp4" type="video/mp4">
         <source src="video/video.ogg" type="video/ogg">
         <track label="English" kind="captions" srclang="en" src="video/captions.vtt" default>
@@ -46,6 +46,7 @@
                <button id="volinc" type="button" data-state="volup"><i class="fa fa-plus" aria-hidden="true"></i></button>
                <button id="voldec" type="button" date-state="voldown"><i class="fa fa-minus" aria-hidden="true"></i></button>
                <button id="fs" type="button" data-state="go-fullscreen"></button>
+               <button id="subtitles" type="button" data-state="subtitles">CC</button>
              </div>
            </div>
         </div>
@@ -54,7 +55,7 @@
     <div class="text-wrapper">
 
       <p class="captionText">
-        <span>Now that we've looked at the architecture of the internet, let's see how you might</span>
+        <span class="highlight">Now that we've looked at the architecture of the internet, let's see how you might</span>
         <span> connect your personal devices to the internet inside your house.</span>
         <span> Well there are many ways to connect to the internet, and </span>
         <span>most often people connect wirelessly.</span>

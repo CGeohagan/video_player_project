@@ -20,9 +20,11 @@ video::-webkit-media-controls {
    width: 100%;
 }
 
+#button-container {
+	display: none;
+}
 
-
-#button-container, .button-controls-1, .button-controls-2, #controls-1 {
+.button-controls-1, .button-controls-2, #controls-1 {
    @extend %flex;
    @extend %flex-row;
 }
@@ -34,8 +36,8 @@ video::-webkit-media-controls {
 
 .button-controls-1 {
  
-   width: 5em;
    @extend %flex;
+   @extend %flex-align;
 }
 
 #controls-1 {
@@ -44,11 +46,9 @@ video::-webkit-media-controls {
 
 .button-controls-2 {
    margin-right: 5%;
-   width: 12em;
    @extend %flex;
+   @extend %flex-align;
 }
-
-
 
 /* Data-state attribue indicate whether controls are visible or not */
 .controls[data-state=hidden] {
@@ -65,22 +65,20 @@ video::-webkit-media-controls {
    bottom: 20px;
 }
 
-
-
-
 .controls {
 
 	button {
 	  @extend %flex-grow;
-	  align-items: center;
+	  @extend %flex-align;
 	  height: 1.5em;
+	  width: 2em;
 	  border:none;
       cursor:pointer;
       background:transparent;
       background-size:contain;
       background-repeat:no-repeat;
       -webkit-appearance: none;
-      margin-left: 5px;
+      margin-left: 6px;
 	}
 
 	button#mute {
@@ -88,7 +86,41 @@ video::-webkit-media-controls {
 	}
 
 	button#fs {
-	  margin-left: 1em;
+	  margin-left: .6em;
+	}
+
+	button#subtitles {
+	  height: 90%;
+	  font-size: 1em;
+	  font-weight: bold;
+	  color: $white;
+	}
+
+	.subtitles-menu {
+	  display: none;
+	  position: absolute;
+	  bottom: 15%;
+	  right: 20px;
+	  background: $white;
+	  list-style-type: none;
+	  margin: 0;
+	  padding: 0;
+	  width: 100px;
+	  padding: 10px;
+	}
+
+	.subtitles-menu li {
+	  padding: 0;
+	  text-align: center;
+	}
+
+	.subtitles-menu li button {
+	  border: none;
+	  background: #000;
+	  color: #fff;
+	  cursor: pointer;
+	  width: 90%;
+	  padding: 2px 5px;
 	}
 
 
@@ -154,8 +186,6 @@ video::-webkit-media-controls {
          
         /* Dimensions */
         height: .3em;    
-
-  
 	}
 
 	/* Polyfill */

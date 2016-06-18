@@ -6,6 +6,7 @@
 %flex {
 	display: flex;
 	display: -webkit-flex;
+	display: -ms-flexbox;
 }
 
 %flex-column {
@@ -31,4 +32,11 @@
 %flex-grow {
 	flex-grow: 1;
 	-webkit-flex-grow: 1;
+}
+
+%flex-align {
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
+	align-items: center;
 }
