@@ -347,19 +347,21 @@ document.addEventListener('msfullscreenchange', function() {
    }  
 }); */
 
-      video.addEventListener("loadedmetadata", function() { 
-      track = document.createElement("track"); 
-      track.kind = "captions"; 
-      track.label = "English"; 
-      track.srclang = "en"; 
-      track.src = "video/captions.vtt"; 
-      track.addEventListener("load", function() { 
-         this.mode = "showing"; 
-         video.textTracks[0].mode = "showing"; // thanks Firefox 
-      }); 
-      this.appendChild(track); 
-   }); 
+   subtitles.addEventListener('click', function(e) {
+ 
+      // Find the language to activate
+      for (var i = 0; i < video.textTracks.length; i++) {
+         // For the 'subtitles-off' button, the first condition will never match so all will subtitles be turned off
+         if (video.textTracks[i].mode == 'hidden') {
+            video.textTracks[i].mode = 'showing';
+            this.setAttribute('data-state', 'active');
+         }
+         else {
+            video.textTracks[i].mode = 'hidden';
+         }
+      }
 
+   });
 
 
 
