@@ -13,8 +13,9 @@ var buffer = document.querySelector('.buffer');
 var fullscreen = document.getElementById('fs');
 var curtime = document.getElementById("current");
 var durtime = document.getElementById("duration");
-var subtitles = document.getElementById('subtitles');
+
  
+
 //Check if browser supports video
 var supportsVideo = !!document.createElement('video').canPlayType;
 if (supportsVideo) {
@@ -31,13 +32,14 @@ videoControls.style.display = '-webkit-flex';
 videoControls.setAttribute('data-state', 'visible');
 
 // Use mouseenter and mouseleave for hiding and showing the video player controls
-videoControls.addEventListener("mouseenter", function() {
+/*videoControls.addEventListener("mouseenter", function() {
    buttonContainer.style.display = 'flex';
    buttonContainer.style.display = '-webkit-flex';
 },false);
+
 videoControls.addEventListener("mouseleave", function() {
    buttonContainer.style.display = 'none';
-},false);
+},false);*/
 
 
 
@@ -125,7 +127,7 @@ video.addEventListener('volumechange', function() {
 
 //3. Implement the playback progress control
 
-   
+	
 
 //Setting max to duration - may not work on all browsers
 video.addEventListener('loadedmetadata', function() {
@@ -175,13 +177,13 @@ if (!supportsProgress) progress.setAttribute('data-state', 'fake');
 
 
 //Playback controls include buffering progress of the downloaded video
-if(video.onprogress) {
+video.addEventListener('progress', function() {
    var bufferedEnd = video.buffered.end(video.buffered.length - 1);
    var duration =  video.duration;
    if (duration > 0) {
         document.getElementById('buffered-amount').style.width = ((bufferedEnd / duration)*100) + "%";
    }
-};
+});
 
 //4. As the media playback time changes, sentences in the transcript should highlight
    //Use javascript to listen for those changes and apply a highlight to the appropriate sentence
@@ -331,44 +333,62 @@ document.addEventListener('msfullscreenchange', function() {
 
 //6. //Embed the .vtt file as a closed captioning track and add a button to video controls to toggle captions on and off
 
+var subtitles = document.getElementById('subtitles');
 //Initially turn off all subtitles in case browser turns them on
 for (var i = 0; i < video.textTracks.length; i++) {
    video.textTracks[i].mode = 'hidden';
 }
 
-subtitles.addEventListener('click', function(e) {
-   if (video.textTracks[0].mode == 'hidden') {
-      video.addEventListener("loadedmetadata", function() { 
-      track = document.createElement("track"); 
-      track.kind = "captions"; 
-      track.label = "English"; 
-      track.srclang = "en"; 
-      track.src = "video/captions.vtt"; 
-      track.addEventListener("load", function() { 
-         this.mode = "showing"; 
-         video.textTracks[0].mode = "showing"; // thanks Firefox 
-      }); 
-      this.appendChild(track); 
-   }); 
-   } 
-   else {
-      for (var i = 0; i < video.textTracks.length; i++) {
-      video.textTracks[i].mode = 'hidden';
-      }
-   }  
-}); 
-
-
-
-
-
-
-
-
-
-
-
+var subtitlesMenu;
+if (video.textTracks) {
+   var df = document.createDocumentFragment();
+   var subtitlesMenu = df.appendChild(document.createElement('ul'));
+   subtitlesMenu.className = 'subtitles-menu';
+   subtitlesMenu.appendChild(createMenuItem('subtitles-off', '', 'Off'));
+   for (var i = 0; i < video.textTracks.length; i++) {
+      subtitlesMenu.appendChild(createMenuItem('subtitles-' + video.textTracks[i].language, video.textTracks[i].language, video.textTracks[i].label));
+   }
+   videoContainer.appendChild(subtitlesMenu);
 }
+
+var captionMenuButtons = [];
+var createMenuItem = function(id, lang, label) {
+   var listItem = document.createElement('li');
+   var button = listItem.appendChild(document.createElement('button'));
+   button.setAttribute('id', id);
+   button.className = 'subtitles-button';
+   if (lang.length > 0) button.setAttribute('lang', lang);
+   button.value = label;
+   button.setAttribute('data-state', 'inactive');
+   button.appendChild(document.createTextNode(label));
+   button.addEventListener('click', function(e) {
+      // Set all buttons to inactive
+      subtitleMenuButtons.map(function(v, i, a) {
+         subtitleMenuButtons[i].setAttribute('data-state', 'inactive');
+      });
+      // Find the language to activate
+      var lang = this.getAttribute('lang');
+      for (var i = 0; i < video.textTracks.length; i++) {
+         // For the 'subtitles-off' button, the first condition will never match so all will subtitles be turned off
+         if (video.textTracks[i].language == lang) {
+            video.textTracks[i].mode = 'showing';
+            this.setAttribute('data-state', 'active');
+         }
+         else {
+            video.textTracks[i].mode = 'hidden';
+         }
+      }
+      subtitlesMenu.style.display = 'none';
+   });
+   subtitleMenuButtons.push(button);
+   return listItem;
+}
+
+subtitles.addEventListener('click', function(e) {
+   if (subtitlesMenu) {
+      subtitlesMenu.style.display = (subtitlesMenu.style.display == 'block' ? 'none' : 'block');
+   }
+});
 
 
 
