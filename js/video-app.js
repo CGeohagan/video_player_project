@@ -332,12 +332,21 @@ document.addEventListener('msfullscreenchange', function() {
 //6. //Embed the .vtt file as a closed captioning track and add a button to video controls to toggle captions on and off
 
 //Initially turn off all subtitles in case browser turns them on
-for (var i = 0; i < video.textTracks.length; i++) {
+/*for (var i = 0; i < video.textTracks.length; i++) {
    video.textTracks[i].mode = 'hidden';
-}
+}*/
 
-subtitles.addEventListener('click', function(e) {
+/*subtitles.addEventListener('click', function(e) {
    if (video.textTracks[0].mode == 'hidden') {
+
+   } 
+   else {
+      for (var i = 0; i < video.textTracks.length; i++) {
+      video.textTracks[i].mode = 'hidden';
+      }
+   }  
+}); */
+
       video.addEventListener("loadedmetadata", function() { 
       track = document.createElement("track"); 
       track.kind = "captions"; 
@@ -350,15 +359,6 @@ subtitles.addEventListener('click', function(e) {
       }); 
       this.appendChild(track); 
    }); 
-   } 
-   else {
-      for (var i = 0; i < video.textTracks.length; i++) {
-      video.textTracks[i].mode = 'hidden';
-      }
-   }  
-}); 
-
-
 
 
 
