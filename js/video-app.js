@@ -347,7 +347,7 @@ document.addEventListener('msfullscreenchange', function() {
 
 //Initially turn off all subtitles in case browser turns them on
 for (var i = 0; i < video.textTracks.length; i++) {
-   video.textTracks[i].mode == 'hidden';
+   video.textTracks[i].mode = 'hidden';
 }
 
 //Hide or show subtitles when clicking the closed captioning button
