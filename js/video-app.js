@@ -62,7 +62,7 @@ var changeButtonState = function(type) {
    else if (type == 'mute') {
       mute.setAttribute('data-state', video.muted ? 'unmute' : 'mute');
    }
-}
+};
 
 //Add event handlers for play/pause/stop/mute buttons
 video.addEventListener('play', function() {
@@ -116,10 +116,10 @@ var checkVolume = function(dir) {
       else video.muted = false;
    }
    changeButtonState('mute');
-}
+};
 var alterVolume = function(dir) {
    checkVolume(dir);
-}
+};
 
 video.addEventListener('volumechange', function() {
    checkVolume();
@@ -296,7 +296,7 @@ if (!fullScreenEnabled) {
 }
 
 //When user clicks fullscreen button
-fs.addEventListener('click', function(e) {
+fullscreen.addEventListener('click', function(e) {
    handleFullscreen();
 });
 
@@ -316,17 +316,17 @@ var handleFullscreen = function() {
       else if (videoContainer.msRequestFullscreen) videoContainer.msRequestFullscreen();
       setFullscreenData(true);
    }
-}
+};
 
 //Function to check if browser is in full screen
 var isFullScreen = function() {
    return !!(document.fullScreen || document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement || document.fullscreenElement);
-}
+};
 
 //Set the value of a data-fullscreen by using data-states (don't quite understand this)
 var setFullscreenData = function(state) {
    videoContainer.setAttribute('data-fullscreen', !!state);
-}
+};
 
 document.addEventListener('fullscreenchange', function(e) {
    setFullscreenData(!!(document.fullScreen || document.fullscreenElement));
