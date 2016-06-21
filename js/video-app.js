@@ -347,18 +347,18 @@ document.addEventListener('msfullscreenchange', function() {
 
 //Initially turn off all subtitles in case browser turns them on
 for (var i = 0; i < video.textTracks.length; i++) {
-   video.textTracks[i].mode = 'hidden';
+   video.textTracks[i].mode == 'hidden';
 }
 
 //Hide or show subtitles when clicking the closed captioning button
 subtitles.addEventListener('click', function(e) {
    for (var i = 0; i < video.textTracks.length; i++) {
       if (video.textTracks[i].mode == 'hidden') {
-         video.textTracks[i].mode = 'showing';
+         video.textTracks[i].mode == 'showing';
          this.setAttribute('data-state', 'active');
       }
       else {
-         video.textTracks[i].mode = 'hidden';
+         video.textTracks[i].mode == 'hidden';
       }
    }
 
