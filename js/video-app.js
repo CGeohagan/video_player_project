@@ -353,12 +353,11 @@ for (var i = 0; i < video.textTracks.length; i++) {
 //Hide or show subtitles when clicking the closed captioning button
 subtitles.addEventListener('click', function(e) {
    for (var i = 0; i < video.textTracks.length; i++) {
-      if (video.textTracks[i].mode == 'hidden') {
-         video.textTracks[i].mode = 'showing';
-         this.setAttribute('data-state', 'active');
+      if (video.textTracks[i].mode == 'showing') {
+         video.textTracks[i].mode = 'hidden';
       }
       else {
-         video.textTracks[i].mode = 'hidden';
+         video.textTracks[i].mode = 'showing';
       }
    }
 
