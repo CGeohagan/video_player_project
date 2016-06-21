@@ -188,13 +188,13 @@ if (!supportsProgress) progress.setAttribute('data-state', 'fake');
 
 
 //Playback controls include buffering progress of the downloaded video
-if(video.onprogress) {
+video.addEventListner('progress', function(){
    var bufferedEnd = video.buffered.end(video.buffered.length - 1);
    var duration =  video.duration;
    if (duration > 0) {
         document.getElementById('buffered-amount').style.width = ((bufferedEnd / duration)*100) + "%";
    }
-};
+});
 
 //4. As the media playback time changes, sentences in the transcript should highlight
    //Use javascript to listen for those changes and apply a highlight to the appropriate sentence
