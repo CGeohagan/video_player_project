@@ -17,6 +17,10 @@ p {
 	margin: 1.1em 0;
 }
 
+.captionText {
+	cursor: pointer;
+}
+
 
 .text-wrapper {
 	max-width: 93%;
@@ -26,4 +30,13 @@ p {
 
 .highlight {
 	color: $color-vid;
+}
+
+/* Responsive Styling */
+
+@media screen and (max-width:768px) {
+	.text-wrapper {
+		max-width: 85%;
+	}
+	
 }

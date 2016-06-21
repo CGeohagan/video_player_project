@@ -81,9 +81,6 @@ video::-webkit-media-controls {
       margin-left: 6px;
 	}
 
-	button#mute {
-	  margin-right: .3em;
-	}
 
 	button#fs {
 	  margin-left: .6em;
@@ -288,46 +285,25 @@ video::-webkit-media-controls {
 	progress::-moz-progress-bar, progress::-webkit-progress-value {
 	  background-color: $color-vid;
 	}
-
-
 }
  
 
 
 /* Responsive Styling */
 
-@media screen and (max-width:1024px) {
-   #video-styles {
-      padding-left:0;
-      padding-right:0;
-   }
+@media screen and (max-width:768px) {
+	
+	#fastbackward, #stop, #fastforward, #volinc, #voldec {
+		display: none;
+	}
+
+	.controls #button-container {
+		margin-top: 15px;
+	}
+
+	.controls #progress-container {
+		width: 85%;
+	}
 
 
-}
-
-@media screen and (max-width:680px) {
-   .controls {
-      height:auto;
-   }
-
-   .controls > * {
-      width:16.6667%;
-      margin-left:0;
-   }
-
-   .controls .progress {
-      position:absolute;
-      top:0;
-      width:100%;
-      float:none;
-      margin-top:0;
-   }
-
-   .controls .progress #progress {
-      width:98%;
-   }
-
-   .controls button {
-      background-position:center center;
-   }
 }

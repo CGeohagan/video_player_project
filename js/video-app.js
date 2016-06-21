@@ -14,6 +14,9 @@ var fullscreen = document.getElementById('fs');
 var curtime = document.getElementById("current");
 var durtime = document.getElementById("duration");
 var subtitles = document.getElementById('subtitles');
+var captionHighlight = document.querySelectorAll('.captionText span');
+var fastbackward = document.getElementById('fastbackward');
+var fastforward = document.getElementById('fastforward');
  
 //Check if browser supports video
 var supportsVideo = !!document.createElement('video').canPlayType;
@@ -123,9 +126,19 @@ video.addEventListener('volumechange', function() {
 }, false);
 
 
-//3. Implement the playback progress control
+//Add fast forward and rewind buttons
+fastforward.addEventListener('click', function(e) {
+   video.currentTime += 10;
+});
 
-   
+fastbackward.addEventListener('click', function(e) {
+   video.currentTime -= 10;
+});
+
+
+
+
+//3. Implement the playback progress control 
 
 //Setting max to duration - may not work on all browsers
 video.addEventListener('loadedmetadata', function() {
@@ -186,7 +199,7 @@ if(video.onprogress) {
 //4. As the media playback time changes, sentences in the transcript should highlight
    //Use javascript to listen for those changes and apply a highlight to the appropriate sentence
 video.addEventListener("timeupdate", function() {
-   var captionHighlight = document.querySelectorAll('.captionText span');
+
    var cueTime = video.currentTime;
    if(cueTime > 0 && cueTime < 4.13) {
       captionHighlight[0].classList.add('highlight');
@@ -331,54 +344,119 @@ document.addEventListener('msfullscreenchange', function() {
 
 //6. //Embed the .vtt file as a closed captioning track and add a button to video controls to toggle captions on and off
 
+
 //Initially turn off all subtitles in case browser turns them on
-/*for (var i = 0; i < video.textTracks.length; i++) {
+for (var i = 0; i < video.textTracks.length; i++) {
    video.textTracks[i].mode = 'hidden';
-}*/
+}
 
-/*subtitles.addEventListener('click', function(e) {
-   if (video.textTracks[0].mode == 'hidden') {
-
-   } 
-   else {
-      for (var i = 0; i < video.textTracks.length; i++) {
-      video.textTracks[i].mode = 'hidden';
+//Hide or show subtitles when clicking the closed captioning button
+subtitles.addEventListener('click', function(e) {
+   for (var i = 0; i < video.textTracks.length; i++) {
+      if (video.textTracks[i].mode == 'hidden') {
+         video.textTracks[i].mode = 'showing';
+         this.setAttribute('data-state', 'active');
       }
-   }  
-}); */
-
-   subtitles.addEventListener('click', function(e) {
- 
-      // Find the language to activate
-      for (var i = 0; i < video.textTracks.length; i++) {
-         // For the 'subtitles-off' button, the first condition will never match so all will subtitles be turned off
-         if (video.textTracks[i].mode == 'hidden') {
-            video.textTracks[i].mode = 'showing';
-            this.setAttribute('data-state', 'active');
-         }
-         else {
-            video.textTracks[i].mode = 'hidden';
-         }
+      else {
+         video.textTracks[i].mode = 'hidden';
       }
+   }
 
-   });
+});
+
+//When the user clicks on any sentence in the transcript the video player jumps to the appropriate time in the video
+var captionTimes = [
+0.240, 4.130, 7.535, 11.270, 13.960, 17.940, 22.370, 26.880, 32.100, 34.730, 39.430, 42.350, 46.300, 49.270, 53.760, 57.780 
+];
 
 
+captionHighlight[0].addEventListener('click', function(e) {
+   //make an array of start times and set the time 
+video.currentTime = captionTimes[0];
+});
 
+captionHighlight[1].addEventListener('click', function(e) {
+   //make an array of start times and set the time 
+video.currentTime = captionTimes[1];
+});
 
+captionHighlight[2].addEventListener('click', function(e) {
+   //make an array of start times and set the time 
+video.currentTime = captionTimes[2];
+});
 
+captionHighlight[3].addEventListener('click', function(e) {
+   //make an array of start times and set the time 
+video.currentTime = captionTimes[3];
+});
 
+captionHighlight[4].addEventListener('click', function(e) {
+   //make an array of start times and set the time 
+video.currentTime = captionTimes[4];
+});
 
+captionHighlight[5].addEventListener('click', function(e) {
+   //make an array of start times and set the time 
+video.currentTime = captionTimes[5];
+});
+
+captionHighlight[6].addEventListener('click', function(e) {
+   //make an array of start times and set the time 
+video.currentTime = captionTimes[6];
+});
+
+captionHighlight[7].addEventListener('click', function(e) {
+   //make an array of start times and set the time 
+video.currentTime = captionTimes[7];
+});
+
+captionHighlight[8].addEventListener('click', function(e) {
+   //make an array of start times and set the time 
+video.currentTime = captionTimes[8];
+});
+
+captionHighlight[9].addEventListener('click', function(e) {
+   //make an array of start times and set the time 
+video.currentTime = captionTimes[9];
+});
+
+captionHighlight[10].addEventListener('click', function(e) {
+   //make an array of start times and set the time 
+video.currentTime = captionTimes[10];
+});
+
+captionHighlight[11].addEventListener('click', function(e) {
+   //make an array of start times and set the time 
+video.currentTime = captionTimes[11];
+});
+
+captionHighlight[12].addEventListener('click', function(e) {
+   //make an array of start times and set the time 
+video.currentTime = captionTimes[12];
+});
+
+captionHighlight[13].addEventListener('click', function(e) {
+   //make an array of start times and set the time 
+video.currentTime = captionTimes[13];
+});
+
+captionHighlight[14].addEventListener('click', function(e) {
+   //make an array of start times and set the time 
+video.currentTime = captionTimes[14];
+});
+
+captionHighlight[15].addEventListener('click', function(e) {
+   //make an array of start times and set the time 
+video.currentTime = captionTimes[15];
+});
 
 }
 
 
 
 
-//For exceeds expectations
-//Embed the .vtt file as a closed captioning track and add a button to video controls to toggle captions on and off
+
 //A creative and thoughtful responsive design
 //Playback speed control or other helpful controls
 
 
-//When the user clicks on any sentence in the transcript the video player jumps to the appropriate time in the video
