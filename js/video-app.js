@@ -456,7 +456,4 @@ video.currentTime = captionTimes[15];
 
 
 
-//A creative and thoughtful responsive design
-//Playback speed control or other helpful controls
-
 

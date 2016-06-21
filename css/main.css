@@ -71,13 +71,17 @@ video::-webkit-media-controls {
   display: none; }
 
 #button-container {
-  margin-top: 1.5%; }
+  margin-top: 20px; }
 
 #controls-1 {
   margin-left: 5%; }
 
 .button-controls-2 {
   margin-right: 5%; }
+
+::cue {
+  background: none;
+  font-size: .8em; }
 
 /* Data-state attribue indicate whether controls are visible or not */
 .controls[data-state=hidden] {

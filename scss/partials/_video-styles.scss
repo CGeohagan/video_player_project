@@ -31,7 +31,7 @@ video::-webkit-media-controls {
 
 #button-container {
    @extend %flex-space;
-   margin-top: 1.5%;
+   margin-top: 20px;
 }
 
 .button-controls-1 {
@@ -48,6 +48,11 @@ video::-webkit-media-controls {
    margin-right: 5%;
    @extend %flex;
    @extend %flex-align;
+}
+
+::cue {
+	background: none;
+	font-size: .8em;
 }
 
 /* Data-state attribue indicate whether controls are visible or not */
@@ -234,8 +239,6 @@ video::-webkit-media-controls {
 	progress[aria-valuenow]:before  {
 	    background: $color-vid;
 	}
-	
-
 	
 
 	.fa {
