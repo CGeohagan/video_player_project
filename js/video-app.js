@@ -354,11 +354,11 @@ for (var i = 0; i < video.textTracks.length; i++) {
 subtitles.addEventListener('click', function(e) {
    for (var i = 0; i < video.textTracks.length; i++) {
       if (video.textTracks[i].mode == 'hidden') {
-         video.textTracks[i].mode == 'showing';
+         video.textTracks[i].mode = 'showing';
          this.setAttribute('data-state', 'active');
       }
       else {
-         video.textTracks[i].mode == 'hidden';
+         video.textTracks[i].mode = 'hidden';
       }
    }
 
