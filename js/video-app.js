@@ -188,7 +188,7 @@ if (!supportsProgress) progress.setAttribute('data-state', 'fake');
 
 
 //Playback controls include buffering progress of the downloaded video
-video.addEventListner('progress', function(){
+video.addEventListener('progress', function(){
    var bufferedEnd = video.buffered.end(video.buffered.length - 1);
    var duration =  video.duration;
    if (duration > 0) {
