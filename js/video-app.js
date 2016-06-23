@@ -33,12 +33,16 @@ videoControls.style.display = 'flex';
 videoControls.style.display = '-webkit-flex';
 videoControls.setAttribute('data-state', 'visible');
 
+//Show video player controls initially
+buttonContainer.style.display = 'flex';
+buttonContainer.style.display = '-webkit-flex';
+
 // Use mouseenter and mouseleave for hiding and showing the video player controls
-videoControls.addEventListener("mouseenter", function() {
+videoContainer.addEventListener("mouseenter", function() {
    buttonContainer.style.display = 'flex';
    buttonContainer.style.display = '-webkit-flex';
 },false);
-videoControls.addEventListener("mouseleave", function() {
+videoContainer.addEventListener("mouseleave", function() {
    buttonContainer.style.display = 'none';
 },false);
 
