@@ -32,7 +32,10 @@
 
 .container {
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  padding: 1em;
+  max-width: 1280px;
+  margin: 0 auto; }
 
 p {
   font-family: "Open Sans", sans-serif;
